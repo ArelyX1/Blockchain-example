@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blockchain evidence</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"
+      type="application/javascript"
+    ></script>
+  </head>
+  <body>
+    <!-- Título -->
+    <h1 class="title" id="mainTitle">Registra tus evidencias en Blockchain</h1>
+    <!-- Vista de inicio de sesión con MetaMask -->
+    <section class="login" id="loginSection">
+      <button onclick="connectWallet()">Conectar con MetaMask</button>
+    </section>
+
+    <!-- Vista principal después del inicio de sesión -->
+    <section class="form" id="formSection" style="display: none;">
+      <div id="caccount"></div>
+      <label>Ingresa lo que quieres registrar</label>
+      <input type="text" id="inputText" />
+      <button onclick="addLearner()" id="addChain">Agregar a la cadena</button>
+      <div id="txnhash"></div>
+
+      <input type="file" id="fileInput" />
+      <button onclick="calculateHash()">Calcular el Hash</button>
+      <div id="hashDisplay"></div>
+      <button onclick="copyHash()">Copiar Hash</button>
+      <div id="txnhash"></div>
+      </section>
+
+    <!-- Botón para desconectar la cuenta de MetaMask -->
+    <button onclick="disconnectWallet()">Desconectar de MetaMask</button>
+  </section>
+
+    <div class="container">
+    </div>
+
+    <script defer src="./interect.js"></script>
+  </body>
+</html>
