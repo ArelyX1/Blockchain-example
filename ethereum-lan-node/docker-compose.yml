@@ -1,0 +1,27 @@
+services:
+  ethereum:
+    image: ethereum/client-go:v1.14.8
+    ports:
+      - "8545:8545"
+    entrypoint: ["sh", "-c"]
+    command:
+      [
+        'mkdir -p $HOME/.geth-dev/keystore; 
+         echo ''$GETH_KEYSTORE_PASSWORD'' > $HOME/.geth-dev/password;
+         echo ''$GETH_KEYSTORE'' > $HOME/.geth-dev/keystore/$GETH_KEYSTORE_FILENAME; 
+         cp /app/genesis.json $HOME/.geth-dev/genesis.json;
+         geth --datadir $HOME/.geth-dev init $HOME/.geth-dev/genesis.json; 
+         geth --dev --syncmode full --ws --ws.addr "0.0.0.0" --ws.origins "*" --http --http.vhosts "*" --http.addr "0.0.0.0" --http.corsdomain "*" --miner.gasprice $GETH_GASPRICE --dev.period $GETH_BLOCK_TIME --rpc.allow-unprotected-txs --datadir $HOME/.geth-dev --password $HOME/.geth-dev/password --http.api eth,web3,net,admin,db,debug,txpool,personal,miner --rpc.enabledeprecatedpersonal --allow-insecure-unlock --mine'
+      ]
+    volumes:
+      - /home/arelyxl/Downloads/VsCode/Blockchain/Registro/ethereum-lan-node:/app
+      - geth-data:$HOME/.geth-dev
+
+
+  whoami:
+    image: "containous/whoami"
+    ports:
+      - "9999:80"
+
+volumes:
+  geth-data:
